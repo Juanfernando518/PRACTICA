@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Para alguien muy especial ❤️</title>
+    <title>Para mi psicóloga favorita ❤️</title>
     <style>
         body {
             margin: 0;
@@ -15,6 +15,23 @@
             overflow: hidden;
         }
 
+        .mensaje-grande {
+            position: absolute;
+            top: 30px;
+            text-align: center;
+            width: 100%;
+            font-size: 38px;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 2px 2px 8px #e91e63;
+            animation: aparecerTexto 2s ease forwards;
+        }
+
+        @keyframes aparecerTexto {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .carta {
             width: 70%;
             max-width: 600px;
@@ -25,6 +42,7 @@
             text-align: center;
             transform: scale(0);
             animation: aparecer 1.5s ease forwards;
+            z-index: 2;
         }
 
         @keyframes aparecer {
@@ -63,20 +81,20 @@
             background: #c2185b;
         }
 
-        .corazones {
+        .flotantes {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
+            z-index: 1;
         }
 
-        .corazon {
+        .elemento {
             position: absolute;
-            color: #e91e63;
-            font-size: 24px;
-            animation: flotar 6s linear infinite;
+            font-size: 28px;
+            animation: flotar 8s linear infinite;
         }
 
         @keyframes flotar {
@@ -87,10 +105,14 @@
 </head>
 <body>
 
-<div class="corazones" id="corazones"></div>
+<div class="mensaje-grande">
+    🌷 Suerte en tus clases, mi psicóloga favorita 🌷
+</div>
+
+<div class="flotantes" id="flotantes"></div>
 
 <div class="carta">
-    <h1></h1>
+    <h1>Para alguien muy especial ❤️</h1>
     <p>
         Desde que llegaste a mi vida, todo tiene un brillo diferente.  
         Tu sonrisa ilumina mis días y tu forma de ser me inspira cada momento.  
@@ -106,25 +128,27 @@
 
 <script>
     function mostrarMensaje() {
-        alert("Eres alguien muy especial en mi vida 💖");
+        alert("Te deseo el mejor día en tus clases 💖");
     }
 
-    function crearCorazones() {
-        const contenedor = document.getElementById('corazones');
+    function crearElementos() {
+        const contenedor = document.getElementById('flotantes');
+        const simbolos = ['❤','🌷','🌸','🌺','💮','🌹','🌼','🌻','⚜️','🌷','🌸','🌺']; // corazones, tulipanes y lirios
+
         setInterval(() => {
-            const corazon = document.createElement('div');
-            corazon.className = 'corazon';
-            corazon.style.left = Math.random() * 100 + 'vw';
-            corazon.innerText = '❤';
-            contenedor.appendChild(corazon);
+            const el = document.createElement('div');
+            el.className = 'elemento';
+            el.style.left = Math.random() * 100 + 'vw';
+            el.innerText = simbolos[Math.floor(Math.random() * simbolos.length)];
+            contenedor.appendChild(el);
 
             setTimeout(() => {
-                corazon.remove();
-            }, 6000);
+                el.remove();
+            }, 8000);
         }, 500);
     }
 
-    crearCorazones();
+    crearElementos();
 </script>
 
 </body>
